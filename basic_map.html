@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<h1 style="color: blue; font-family: rockwell;">Pipe Trench Calculator</h1>
+<h2 style="color: navy; font-family: rockwell;">Pawnee Rangers</h3>
+<h3 style="color: olive; font-family: arial;">Jordi Berrett</h3>
+<h4> 2/12/18 </h4>
+
+<html>
+<head>
+	<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+	<script src="https://js.arcgis.com/4.6/"></script>
+	<style>
+		 html, body, #viewDiv {
+			padding: 0;
+			margin: 10;
+			height: 100%;
+			width: 100%;
+		  }
+	</style>
+	<script>
+	  require([
+	  "esri/Map",
+	  "esri/layers/MapImageLayer",
+	  "esri/views/MapView",
+	  "dojo/domReady!"
+	 ], function(Map, MapImageLayer, MapView){
+	 
+		var map = new Map({
+		 basemap: "terrain"
+		 });
+		 var PR_DEM = new MapImageLayer({
+			url: "http://geoserver2.byu.edu/arcgis/rest/services/PawneeRangers/DEM/MapServer"
+		 });
+		 var PR_Municipalities = new MapImageLayer({
+			url: "http://geoserver2.byu.edu/arcgis/rest/services/PawneeRangers/Municipalities/MapServer"
+		 });
+		 map.layers.add(PR_DEM);
+		 map.layers.add(PR_Municipalities);
+	 
+		var view = new MapView({
+		container: "viewDiv",
+		map: map, 
+		center: [-111.1, 39.1],
+		zoom: 7
+		});
+	 });
+	 </script>
+	 </head>
+	 <body>
+		<div id="viewDiv"></div>
+	</body>
+	</html>

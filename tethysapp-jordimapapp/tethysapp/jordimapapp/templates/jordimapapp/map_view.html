@@ -1,13 +1,14 @@
 {% extends "jordimapapp/base.html" %}
+{% load tethys_gizmos %}
+
 {% block app_content %}
 <!DOCTYPE html>
 <html>
 <h1 style="color: blue; font-family: rockwell; text-align: Center;">Pipe Trench Calculator</h1>
 <h2 style="color: navy; font-family: rockwell; text-align: Center;">Pawnee Rangers</h3>
 <h3 style="color: olive; font-family: arial; text-align: Center;">Jordi Berrett</h3>
-<h4> 2/14/18 </h4>
-
-
+<h4> Originally created on 2/14/18. </h4>
+{% gizmo notes_input %}
 
 	<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
 	<script src="https://js.arcgis.com/4.6/"></script>
@@ -86,7 +87,9 @@
 	<span id="layToggle"style="color: orangered; font-family: rockwell">
     <input type="checkbox" id="muni" checked> Utah County Municipalities
 	</span>
+	{% gizmo slider1 %}
 		<div id="viewDiv"></div>
+{% gizmo line_plot_view %}
 
 
 

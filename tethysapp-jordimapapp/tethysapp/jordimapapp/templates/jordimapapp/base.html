@@ -1,0 +1,40 @@
+{% extends "tethys_apps/app_base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ tethys_app.name }}{% endblock %}
+
+{% block app_icon %}
+  {# The path you provided in your app.py is accessible through the tethys_app.icon context variable #}
+  <img src="{% static tethys_app.icon %}">
+{% endblock %}
+
+{# The name you provided in your app.py is accessible through the tethys_app.name context variable #}
+{% block app_title %}{{ tethys_app.name }}{% endblock %}
+
+{% block app_navigation_items %}
+  <li class="title">App Navigation</li>
+  <li><a href="{% url 'jordimapapp:home' %}">Home</a></li>
+  <li><a href="{% url 'jordimapapp:map_view' %}">Map View</a></li>
+  <li><a href="{% url 'jordimapapp:data_services' %}">Data Services</a></li>
+  <li><a href="{% url 'jordimapapp:about' %}">About</a></li>
+  <li><a href="{% url 'jordimapapp:proposal' %}">Proposal</a></li>
+  <li><a href="{% url 'jordimapapp:wireframes' %}">Wireframe Mockup Diagrams</a></li>
+
+{% endblock %}
+
+{% block app_content %}
+{% endblock %}
+
+{% block app_actions %}
+{% endblock %}
+
+{% block content_dependent_styles %}
+  {{ block.super }}
+  <link href="{% static 'jordimapapp/css/main.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script src="{% static 'jordimapapp/js/main.js' %}" type="text/javascript"></script>
+{% endblock %}

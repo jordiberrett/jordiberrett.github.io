@@ -1,0 +1,96 @@
+{% extends "jordimapapp/base.html" %}
+{% load tethys_gizmos %}
+
+{% block app_content %}
+<!DOCTYPE html>
+<html>
+<h1 style="color: blue; font-family: rockwell; text-align: Center;">Pipe Trench Calculator</h1>
+<h2 style="color: navy; font-family: rockwell; text-align: Center;">Pawnee Rangers</h3>
+<h3 style="color: olive; font-family: arial; text-align: Center;">Jordi Berrett</h3>
+<h4> Originally created on 2/14/18. </h4>
+{% gizmo notes_input %}
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+	<script src="https://js.arcgis.com/4.6/"></script>
+	<style>
+		 html, body, #viewDiv {
+			padding: 10;
+			margin: 10;
+			height: 100%;
+			width: 100%;
+		  }
+		  #viewDiv {
+		  height: 500px;
+		  }
+	</style>
+	<script>
+	  require([
+		"esri/Map",
+		"esri/layers/MapImageLayer",
+		"esri/layers/FeatureLayer",
+		"esri/views/MapView",
+		"dojo/dom",  // require dojo/dom for getting the DOM element
+		"dojo/on",   // require dojo/on for listening to events on the DOM
+		"dojo/domReady!"
+	 ], function(Map, MapImageLayer, FeatureLayer, MapView, dom, on){
+	 // Function must be in same order as require fields!
+		var map = new Map({
+		 basemap: "terrain"
+		 });
+
+		var view = new MapView({
+		container: "viewDiv",
+		map: map,
+		center: [-111.6585, 40.2338],
+		zoom: 10.3
+		});
+
+	  // Popup Code
+	  var template = { // autocasts as new PopupTemplate()
+        title: "City/Municipality: {NAME}",
+        content: "<ul><li> Estimated Population (December 2017): {POPLASTEST}" +
+			"<li> Last Census Population: {POPLASTCEN}"
+      };
+		var PR_DEM = new MapImageLayer({
+			url: "http://geoserver2.byu.edu/arcgis/rest/services/PawneeRangers/DEM/MapServer"
+		 });
+		 var PR_Muni = new FeatureLayer({
+			url: "http://geoserver2.byu.edu/arcgis/rest/services/PawneeRangers/Municipalities/MapServer",
+			outFields: ["*"],
+			popupTemplate: template
+		 });
+		 map.layers.add(PR_DEM);
+		 map.layers.add(PR_Muni);
+
+// Create a variable referencing the checkbox node
+		var PR_DEMToggle = dom.byId("dem");
+
+		// Listen to the onchange event for the checkbox
+		on(PR_DEMToggle, "change", function(){
+		  // When the checkbox is checked (true), set the layer's visibility to true
+		  PR_DEM.visible = PR_DEMToggle.checked;
+		});
+		var PR_MuniToggle = dom.byId("muni");
+
+		// Listen to the onchange event for the checkbox
+		on(PR_MuniToggle, "change", function(){
+		  // When the checkbox is checked (true), set the layer's visibility to true
+		  PR_Muni.visible = PR_MuniToggle.checked;
+		});
+	 });
+	 </script>
+
+	<span id="layerToggle"style="color: orangered; font-family: rockwell">
+    <input type="checkbox" id="dem" checked> Utah County DEM
+  </span>
+	<br />
+	<span id="layToggle"style="color: orangered; font-family: rockwell">
+    <input type="checkbox" id="muni" checked> Utah County Municipalities
+	</span>
+	{% gizmo slider1 %}
+		<div id="viewDiv"></div>
+{% gizmo line_plot_view %}
+
+
+
+{% endblock %}

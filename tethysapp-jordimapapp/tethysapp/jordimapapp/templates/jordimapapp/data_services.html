@@ -1,0 +1,10 @@
+{% extends "jordimapapp/base.html" %}
+{% block app_content %}
+  <h1 style="color: orange; font-family: rockwell; text-align: Center;">Data Services</h1>
+<p>The Data Services used in this app include shapefile data that was originally downloaded at gis.utah.gov,
+and then modified in ArcMap 10.5 in order to encompass all of Utah County. The data includes
+municipal data for each municipality within Utah County, as well as DEM raster datasets for the area covering Utah County.
+With these datasets, we plan on creating a pipe trenching tool. Our shapefiles have been published on the class Geoserver
+found hosted at the link below.</p>
+<a href="http://geoserver2.byu.edu/arcgis/rest/services/PawneeRangers/DEM/MapServer" target="_blank">Geoserver Link</a>
+{% endblock %}

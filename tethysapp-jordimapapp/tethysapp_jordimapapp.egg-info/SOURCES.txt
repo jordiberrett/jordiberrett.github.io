@@ -1,0 +1,16 @@
+setup.py
+tethysapp/__init__.py
+tethysapp/jordimapapp/__init__.py
+tethysapp/jordimapapp/api.py
+tethysapp/jordimapapp/app.py
+tethysapp/jordimapapp/controllers.py
+tethysapp/jordimapapp/handoff.py
+tethysapp/jordimapapp/model.py
+tethysapp/jordimapapp/tests/__init__.py
+tethysapp/jordimapapp/tests/tests.py
+tethysapp_jordimapapp.egg-info/PKG-INFO
+tethysapp_jordimapapp.egg-info/SOURCES.txt
+tethysapp_jordimapapp.egg-info/dependency_links.txt
+tethysapp_jordimapapp.egg-info/namespace_packages.txt
+tethysapp_jordimapapp.egg-info/not-zip-safe
+tethysapp_jordimapapp.egg-info/top_level.txt

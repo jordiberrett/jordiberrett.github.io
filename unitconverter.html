@@ -1,10 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<title>Feet to Meters Length Converter</title>
+<body>
+
+<h2 style="color: blue; font-family: rockwell;">Length Converter</h2>
+<p>Type a value in the Feet field to convert the value to Meters:</p>
+
 <p>
   <label>Feet</label>
-  <input id="inputFeet" type="number" placeholder="Feet"
-  oninput="lengthConverter(this.value)" onchange="lengthConverter(this.value)">
+  <input id="inputFeet" type="number" placeholder="Feet" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)">
 </p>
-<p>cm: <span id="outputMeters"></span></p>
-/* When the input field receives input, convert the value from feet to meters */
-function lengthConverter(valNum) {
-  document.getElementById("outputMeters").innerHTML = valNum / 0.0022046;
+<p>Meters: <span id="outputMeters"></span></p>
+
+<script>
+function LengthConverter(valNum) {
+  document.getElementById("outputMeters").innerHTML=valNum/3.2808;
 }
+</script>
+</body>
+</html>
+
